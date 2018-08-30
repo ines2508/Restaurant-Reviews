@@ -16,7 +16,20 @@ h2,
 h3, 
 header, 
 main, 
-footer {
+footer,
+section,
+article, 
+aside, 
+canvas, 
+details, 
+figcaption, 
+figure, 
+hgroup, 
+menu, 
+nav,
+select,
+option
+ {
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -26,9 +39,20 @@ footer {
 body,
 header,
 main,
+footer,
 section,
-article,
-footer {
+article, 
+aside, 
+canvas, 
+details, 
+figcaption, 
+figure, 
+hgroup, 
+menu, 
+nav,
+ul,
+select,
+option {
     display: flex;
     display: -webkit-flex;
     width: 100%;
@@ -65,28 +89,27 @@ a img{
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0 0 2em;
+  padding: 0.2em 0 0.2em;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+
 #maincontent {
   background-color: #f3f3f3;
-  min-height: 100%;
 }
 #footer {
   background-color: #444;
   color: #aaa;
   font-size: 0.8em;
   letter-spacing: 0.1em;
-  padding: 2.2em;
+  padding: 1.2em;
   text-align: center;
   text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
 }
 /* ====================== Navigation ====================== */
 nav {
   width: 100%;
-  height: 4em;
+  height: 100%;
   background-color: #252831;
   text-align:center;
 }
@@ -140,27 +163,27 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
-  height: 5em;
   background-color: #3397DB;
   align-items: center;
 }
 .filter-options h2 {
   color: white;
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: normal;
-  line-height: 1;
-  margin: 0 0.8em;
+  line-height: 1.5;
+  padding: 0.8em 0  0 0.8em;
 }
 .filter-options select {
   background-color: white;
   border: 1px solid #fff;
   font-family: Arial,sans-serif;
   font-size: 1.1em;
+  line-height: 150%;
   height: 2.2em;
   letter-spacing: 0;
   margin: 0.8em;
   padding: 0 0.4em;
-  width: 45%;
+  width: 90%;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -168,7 +191,7 @@ nav h1 a {
   background-color: #f3f3f3;
   list-style: outside none none;
   margin: 0;
-  padding: 30px 15px 60px;
+  padding: 3em 1.5em 6em;
   text-align: center;
 }
 #restaurants-list li {
@@ -306,4 +329,10 @@ nav h1 a {
 }
 #restaurant-hours td {
   color: #666;
+}
+
+@media all and (min-width: 650px){
+  .filter-options select {
+    width: 45%;
+  }
 }
