@@ -123,7 +123,6 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     if (time.innerHTML.includes(',')) {
       var newText = time.innerHTML.split(',');
       newTime = `${newText[0]}<br>${newText[1]}`
-      console.log(newTime);
       time.innerHTML = newTime;
     } else {
       time.innerHTML = operatingHours[key];
