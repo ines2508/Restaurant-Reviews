@@ -153,6 +153,18 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     ul.appendChild(createReviewHTML(review));
   });
   container.appendChild(ul);
+
+  // show more review
+  const readMoreContainer = document.querySelectorAll(".read-more");
+  console.log(readMoreContainer)
+  readMoreContainer.forEach(function(oneRead){
+      oneRead.addEventListener("click", function(){
+         console.log(this);
+         let readButton = this;
+         readButton.parentElement.classList.toggle('short-description');
+      })
+  })
+
 }
 
 /**
@@ -160,6 +172,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+  li.className = 'short-description';
   const reviewContainer = document.createElement('div');
   reviewContainer.className = 'review-data-container';
   const name = document.createElement('p');
@@ -184,7 +197,15 @@ createReviewHTML = (review) => {
   comments.className = 'review-comments';
   li.appendChild(comments);
 
+  const readMore = document.createElement('p');
+  readMore.innerHTML = 'Read more';
+  readMore.setAttribute('data-toggle', 'short-description');
+  readMore.className = 'read-more';
+  li.appendChild(readMore);
+
+
   return li;
+
 }
 
 /**
@@ -212,3 +233,8 @@ getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+
+
+  const readMoreContainer = document.querySelectorAll(".read-more");
+  console.log(readMoreContainer)

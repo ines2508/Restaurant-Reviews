@@ -1,6 +1,7 @@
-let cacheName = 'restaurant-v25';
+let cacheName = 'restaurant-v15';
 
 self.addEventListener('install', function(event){
+
     event.waitUntil(
         caches.open(cacheName).then(function(cache){
             return cache.addAll([
@@ -35,23 +36,42 @@ self.addEventListener('install', function(event){
     )
 });
 
-self.addEventListener('active', function(event){
-
+self.addEventListener('activated', function(event){
+    event.waitUntil(
+        caches.keys().then(function(cacheName){
+            return Promise.all(cacheName.map(function(cacheOne){
+                if (cacheOne !== cacheName) {
+                    console.log('Hallo');
+                    return caches.delete(cacheOne);
+                }
+            }))
+        })
+    )
 });
 
 self.addEventListener('fetch', function(event){
     console.log(event.request);
+
+    // Fixing Bug in Chrome https://github.com/josephfrazier/Reported-Web/commit/3f67dfe3eabdf45bbd3e49c172d8dca7017fe5b8
+    const { request } = event;
+    if (request.cache === 'only-if-cached' && request.mode !== 'same-origin') {
+        return;
+      }
+
     event.respondWith(
         caches.match(event.request).then(function(response){
             if (response) {
+                console.log(event.request.url);
                 return response;
-            } else {return fetch(event.request)};
+            } 
+            
+            return fetch(event.request);
         })
     )
 
 });
 
-//cache.put(request. response);
+//cache.put(request, response);
 
 //cache.addAll([
 //    'foo',
