@@ -28,7 +28,8 @@ hgroup,
 menu, 
 nav,
 select,
-option
+option,
+.container
  {
     margin: 0;
     padding: 0;
@@ -60,7 +61,8 @@ option,
 .review-data-container,
 #restaurant-container,
 .restaurant-name-img-container,
-ul#reviews-list {
+ul#reviews-list,
+.container {
     display: flex;
     display: -webkit-flex;
     width: 100%;
@@ -286,6 +288,7 @@ nav h1 a {
 .inside header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 2000;
 }
@@ -502,8 +505,12 @@ ul#reviews-list {
     max-height: 40vw;
   }
 
+  #reviews-list p.review-comments {
+    padding: 1em 1.6em 1.6em 1.6em;
+  }
+
   .short-description {
-    max-height: 50vw;
+    max-height: 65vh;
   }
 }
 
@@ -591,6 +598,17 @@ ul#reviews-list {
 }
 
 
+@media all and (min-width: 700px) and (orientation: portrait) {
+
+  #restaurant-img {
+    max-height: 35vw;
+  }
+
+  .short-description {
+    max-height: 23vh;
+  }
+}
+
 @media all and (min-width: 700px) and (orientation: landscape) {
 
   #restaurant-img {
@@ -598,11 +616,23 @@ ul#reviews-list {
   }
 
   .short-description {
-    max-height: 35vw;
+    max-height: 50vh;
   }
 }
 
-@media all and (min-width: 900px) and (orientation: portrait) {
+@media all and (min-width: 850px) and (max-width: 1023px) and (orientation: landscape) {
+
+  #restaurant-img {
+    max-height: 35vw;
+  }
+
+  .short-description {
+    max-height: 45vh;
+  }
+}
+
+
+@media all and (min-width: 900px) and (max-width: 1023px) and (orientation: portrait) {
   
   #restaurant-img {
     max-height: 30vh;
@@ -648,24 +678,37 @@ ul#reviews-list {
   }  
 }
 
-@media all and (min-width: 1023px) and (orientation: landscape) {
-  
-  #restaurant-img {
-    max-height: 30vh;
-  }
-  
-  .short-description {
-    max-height: 30vw;
-  }
-}
 
-@media all and (min-width: 1035px) and (orientation: landscape) {
-  
-  #restaurant-img {
-    max-height: 30vh;
+@media all and (min-width: 1024px) {
+  .container {
+    width: 1035px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
+  .inside #map-container {
+    height: 450px;
+  }
+
+  #restaurants-list li {
+    width: 30%;
+  }
+  #restaurants-list .restaurant-img {
+    max-height: 200px;
+  }
+
+  .restaurant-name-img-container {
+    width: 50%;
+  }
+
+  #restaurant-img {
+    max-height: 300px;
+  }
+
+  #restaurant-hours {
+    width: 40%;
+  }
   .short-description {
-    max-height: 25vh;
+    max-height: 230px;
   }
 }
