@@ -1,5 +1,7 @@
-let cacheName = 'restaurant-v01';
-let filesToCache = ['./',
+let cacheName = 'restaurant-v00';
+let filesToCache = [
+//'/skeleton',
+'./',
 './index.html',
 './restaurant.html',
 './css/styles.css',
@@ -26,17 +28,19 @@ let filesToCache = ['./',
 ];
 
 self.addEventListener('install', function(e){
-
+    
     e.waitUntil(
        caches.open(cacheName).then(function(cache){
            return cache.addAll(filesToCache);
        }) 
     )
+    self.skipWaiting();
+
 })
 
 self.addEventListener('activate', function(e){
-    e.waitUntil(
 
+    e.waitUntil(
         // remove old caches
         caches.keys().then(function(cachesNames){
             return Promise.all(
@@ -60,12 +64,21 @@ self.addEventListener('fetch', function(e){
         return;
     }
 
+   // var requestUrl = new URL(e.request.url);
+  //  if (requestUrl.origin === location.origin){
+  //      if (requestUrl.pathname === '/') {
+  //          event.respondWith(caches.match('/skeleton'));
+  //          return;
+  //      }
+  //  } 
+
     e.respondWith(
         caches.match(e.request)
         .then(function(response){
             if (response) {
-                return response;
-            } 
+                return response; 
+                //|| fetch(e.request);
+            }
 
             // Saving visited URLs, followed by bitsofcode https://www.youtube.com/watch?v=BfL3pprhnms&feature=youtu.be
             var requestClone = e.request.clone();
@@ -81,9 +94,11 @@ self.addEventListener('fetch', function(e){
                         });
 
                 }).cache(function(err){
-                        console.log('There is no cache to show.')
+                        console.log('There is no cache to show.' + err)
                 })
                // return fetch(e.request);
-            })
+        })
     )
 })
+
+self.skipWaiting();
