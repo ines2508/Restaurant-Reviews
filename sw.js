@@ -1,6 +1,5 @@
-let cacheName = 'restaurant-v00';
+let cacheName = 'restaurant-v01';
 let filesToCache = [
-//'/skeleton',
 './',
 './index.html',
 './restaurant.html',
@@ -25,16 +24,16 @@ let filesToCache = [
 'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
 'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
 'https://unpkg.com/leaflet@1.3.1/dist/images/marker-shadow.png'
-];
+]
 
 self.addEventListener('install', function(e){
-    
+    //self.skipWaiting();
+
     e.waitUntil(
        caches.open(cacheName).then(function(cache){
            return cache.addAll(filesToCache);
        }) 
-    )
-    self.skipWaiting();
+    );
 
 })
 
@@ -52,7 +51,7 @@ self.addEventListener('activate', function(e){
                 })
             )
         })
-    )
+    );
 })
 
 
@@ -64,41 +63,39 @@ self.addEventListener('fetch', function(e){
         return;
     }
 
-   // var requestUrl = new URL(e.request.url);
-  //  if (requestUrl.origin === location.origin){
-  //      if (requestUrl.pathname === '/') {
-  //          event.respondWith(caches.match('/skeleton'));
-  //          return;
-  //      }
-  //  } 
-
     e.respondWith(
+
         caches.match(e.request)
         .then(function(response){
             if (response) {
-                return response; 
-                //|| fetch(e.request);
+                return response
+            } else {
+                return fetch(e.request);
             }
 
             // Saving visited URLs, followed by bitsofcode https://www.youtube.com/watch?v=BfL3pprhnms&feature=youtu.be
             var requestClone = e.request.clone();
-            fetch(requestClone)
+            return fetch(requestClone)
+
                 .then(function(response){
-                    var responseClone = response.clone();
+
                         if(!response){
                             return response;
-                            }
+                        }
+
+                        var responseClone = response.clone();
+
                         caches.open(cacheName).then(function(cache){
                         cache.put(e.request, responseClone);
                         return response; 
                         });
 
-                }).cache(function(err){
-                        console.log('There is no cache to show.' + err)
+                }).catch(function(err){
+                        console.log('There are no cached links to show.' + err)
                 })
-               // return fetch(e.request);
+        }).catch(function(err){
+            console.log('There is nothing to fetch.' + err)
         })
     )
 })
 
-self.skipWaiting();
