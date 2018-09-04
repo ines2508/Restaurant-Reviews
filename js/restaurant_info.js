@@ -156,10 +156,8 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 
   // show more review
   const readMoreContainer = document.querySelectorAll(".read-more");
-  console.log(readMoreContainer)
   readMoreContainer.forEach(function(oneRead){
       oneRead.addEventListener("click", function(){
-         console.log(this);
          let readButton = this;
          readButton.parentElement.classList.toggle('short-description');
       })
@@ -237,4 +235,3 @@ getParameterByName = (name, url) => {
 
 
   const readMoreContainer = document.querySelectorAll(".read-more");
-  console.log(readMoreContainer)
