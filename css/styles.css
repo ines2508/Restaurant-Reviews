@@ -206,8 +206,8 @@ nav h1 a {
 }
 
 .filter-options select {
-  background-color: white;
-  border: 1px solid #fff;
+  background-color: white; 
+  border: 0.1em solid white;
   font-family: Arial,sans-serif;
   font-size: 1.1em;
   line-height: 150%;
@@ -216,6 +216,11 @@ nav h1 a {
   margin: 0.8em 0 0.8em 0;
   padding: 0 0.4em;
   width: 90%;
+}
+
+select:focus {
+  /* box-shadow: 0 0 0.1em 0.2em #f18200; */
+  outline: 0.2em solid orange;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -286,6 +291,7 @@ nav h1 a {
 #restaurants-list li a:hover {
   background-color: #f18200;
   padding: 0.8em 2.1em 0.4em 2.3em;
+  transition: ease-in-out, padding .35s ease-in-out;
 }
 
 /* ====================== Restaurant Details ====================== */
@@ -500,6 +506,7 @@ ul#reviews-list {
 
   .short-description {
     max-height: 30vh;
+
   }
 }
 
