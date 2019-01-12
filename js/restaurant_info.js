@@ -106,8 +106,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
-  const hours = document.getElementById('restaurant-hours');
-  for (let key in operatingHours) {
+    
+    const hours = document.getElementById('restaurant-hours');
+    for (let key in operatingHours) {
     const row = document.createElement('tr');
 
     const day = document.createElement('td');
@@ -127,8 +128,8 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     } else {
       time.innerHTML = operatingHours[key];
     }
-    row.appendChild(time);
 
+    row.appendChild(time);
     hours.appendChild(row);
   }
 }
@@ -148,20 +149,32 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     container.appendChild(noReviews);
     return;
   }
+
   const ul = document.getElementById('reviews-list');
   reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
+  ul.appendChild(createReviewHTML(review));
+
   });
   container.appendChild(ul);
 
   // show more review
   const readMoreContainer = document.querySelectorAll(".read-more");
   readMoreContainer.forEach(function(oneRead){
-      oneRead.addEventListener("click", function(){
-         let readButton = this;
-         readButton.parentElement.classList.toggle('short-description');
-      })
+
+    oneRead.addEventListener("click", function(){
+      
+      let readButton = this;
+      readButton.parentElement.classList.toggle('short-description');        
+         
+      if (readButton.parentElement.classList.contains('short-description')) {
+        readButton.innerHTML = "Read more"
+      } else {
+        readButton.innerHTML = "Close"
+      }        
+
+    })
   })
+
 
 }
 
@@ -221,10 +234,10 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
  */
 getParameterByName = (name, url) => {
   if (!url)
-    url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
-    results = regex.exec(url);
+   url = window.location.href;
+   name = name.replace(/[\[\]]/g, '\\$&');
+   const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+   results = regex.exec(url);
   if (!results)
     return null;
   if (!results[2])
@@ -234,4 +247,3 @@ getParameterByName = (name, url) => {
 
 
 
-  const readMoreContainer = document.querySelectorAll(".read-more");

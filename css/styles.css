@@ -271,7 +271,7 @@ nav h1 a {
 }
 
 #restaurants-list li a {
-  background-color: orange;
+  background-color: #ffa500;
   color: #fff;
   display: flex;
   font-size: 1em;
@@ -282,6 +282,10 @@ nav h1 a {
   justify-content: center;
   align-self: flex-end;
   border-radius: 0 0 2em 0;
+}
+#restaurants-list li a:hover {
+  background-color: #f18200;
+  padding: 0.8em 2.1em 0.4em 2.3em;
 }
 
 /* ====================== Restaurant Details ====================== */
