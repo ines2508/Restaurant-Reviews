@@ -149,11 +149,52 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     container.appendChild(noReviews);
     return;
   }
+  
+/**
+ * Create review HTML and add it to the webpage.
+ */
+  createReviewHTML = (review) => {
+    const li = document.createElement('li');
+    li.className = 'short-description';
+    const reviewContainer = document.createElement('div');
+    reviewContainer.className = 'review-data-container';
+    const name = document.createElement('p');
+    name.innerHTML = review.name;
+    name.className = 'review-name';
+    reviewContainer.appendChild(name);
+
+    const date = document.createElement('p');
+    date.innerHTML = review.date;
+    date.className = 'review-date';
+    reviewContainer.appendChild(date);
+    li.appendChild(reviewContainer);
+
+
+    const rating = document.createElement('p');
+    rating.innerHTML = `Rating: ${review.rating}`;
+    rating.className = 'review-rating';
+    li.appendChild(rating);
+
+    const comments = document.createElement('p');
+    comments.innerHTML = review.comments;
+    comments.className = 'review-comments';
+    li.appendChild(comments);
+
+    
+    const readMore = document.createElement('p');
+    readMore.innerHTML = 'Read more';
+    readMore.setAttribute('data-toggle', 'short-description');
+    readMore.className = 'read-more';
+    readMore.setAttribute("tabindex","0");
+    li.appendChild(readMore);
+
+    return li;
+
+  }
 
   const ul = document.getElementById('reviews-list');
   reviews.forEach(review => {
-  ul.appendChild(createReviewHTML(review));
-
+    ul.appendChild(createReviewHTML(review));
   });
   container.appendChild(ul);
 
@@ -161,62 +202,39 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const readMoreContainer = document.querySelectorAll(".read-more");
   readMoreContainer.forEach(function(oneRead){
 
-    oneRead.addEventListener("click", function(){
-      
-      let readButton = this;
+    const changeRead = (readButton) => {
       readButton.parentElement.classList.toggle('short-description');        
          
       if (readButton.parentElement.classList.contains('short-description')) {
         readButton.innerHTML = "Read more"
       } else {
         readButton.innerHTML = "Close"
-      }        
+      }  
+    }
+
+  // event for mouse "click"
+    oneRead.addEventListener("click", function(){
+      
+      let readButton = this; 
+      changeRead(readButton);
 
     })
+
+    // event for focus with "Enter" key press
+    oneRead.addEventListener("keypress", function(e){
+      let button = e.keyCode;
+      let character = e.which;
+
+      if (button === 13 || character === 13) {
+        
+        let readButton = this;        
+        changeRead(readButton);
+
+      } else {undefined}
+     
+    })
+
   })
-
-
-}
-
-/**
- * Create review HTML and add it to the webpage.
- */
-createReviewHTML = (review) => {
-  const li = document.createElement('li');
-  li.className = 'short-description';
-  const reviewContainer = document.createElement('div');
-  reviewContainer.className = 'review-data-container';
-  const name = document.createElement('p');
-  name.innerHTML = review.name;
-  name.className = 'review-name';
-  reviewContainer.appendChild(name);
-
-  const date = document.createElement('p');
-  date.innerHTML = review.date;
-  date.className = 'review-date';
-  reviewContainer.appendChild(date);
-  li.appendChild(reviewContainer);
-
-
-  const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
-  rating.className = 'review-rating';
-  li.appendChild(rating);
-
-  const comments = document.createElement('p');
-  comments.innerHTML = review.comments;
-  comments.className = 'review-comments';
-  li.appendChild(comments);
-
-  const readMore = document.createElement('p');
-  readMore.innerHTML = 'Read more';
-  readMore.setAttribute('data-toggle', 'short-description');
-  readMore.className = 'read-more';
-  li.appendChild(readMore);
-
-
-  return li;
-
 }
 
 /**

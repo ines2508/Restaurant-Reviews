@@ -32,6 +32,8 @@ self.addEventListener('install', function(e){
     e.waitUntil(
        caches.open(cacheName).then(function(cache){
            return cache.addAll(filesToCache);
+       }).catch(function(err){
+           console.log("There is nothing to install " + err)
        }) 
     );
 
@@ -50,6 +52,8 @@ self.addEventListener('activate', function(e){
                     return caches.delete(oneCache);
                 })
             )
+        }).catch(function(err){
+            console.log("Servise Worker is not activated" + err)
         })
     );
 })
@@ -73,26 +77,6 @@ self.addEventListener('fetch', function(e){
                 return fetch(e.request);
             }
 
-            // Saving visited URLs, followed by bitsofcode https://www.youtube.com/watch?v=BfL3pprhnms&feature=youtu.be
-            var requestClone = e.request.clone();
-            return fetch(requestClone)
-
-                .then(function(response){
-
-                        if(!response){
-                            return response;
-                        }
-
-                        var responseClone = response.clone();
-
-                        caches.open(cacheName).then(function(cache){
-                        cache.put(e.request, responseClone);
-                        return response; 
-                        });
-
-                }).catch(function(err){
-                        console.log('There are no cached links to show.' + err)
-                })
         }).catch(function(err){
             console.log('There is nothing to fetch.' + err)
         })

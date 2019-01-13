@@ -219,9 +219,8 @@ nav h1 a {
 }
 
 select:focus {
-  /* box-shadow: 0 0 0.1em 0.2em #f18200; */
   outline: 0.2em solid orange;
-}
+} 
 
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
@@ -288,9 +287,13 @@ select:focus {
   align-self: flex-end;
   border-radius: 0 0 2em 0;
 }
+
 #restaurants-list li a:hover {
-  background-color: #f18200;
+  background-color: #3397DB;
   padding: 0.8em 2.1em 0.4em 2.3em;
+  -webkit-transition: ease-in-out, padding .35s ease-in-out;
+  -moz-transition: ease-in-out, padding .35s ease-in-out;
+  -o-transition: ease-in-out, padding .35s ease-in-out;
   transition: ease-in-out, padding .35s ease-in-out;
 }
 
@@ -719,6 +722,7 @@ ul#reviews-list {
   #restaurant-hours {
     width: 40%;
   }
+
   .short-description {
     max-height: 230px;
   }
