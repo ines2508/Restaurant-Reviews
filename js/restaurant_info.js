@@ -182,7 +182,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 
     
     const readMore = document.createElement('p');
-    readMore.innerHTML = 'Read more';
+    readMore.innerHTML = 'Read more review';
     readMore.setAttribute('data-toggle', 'short-description');
     readMore.className = 'read-more';
     readMore.setAttribute("tabindex","0");
@@ -206,9 +206,9 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
       readButton.parentElement.classList.toggle('short-description');        
          
       if (readButton.parentElement.classList.contains('short-description')) {
-        readButton.innerHTML = "Read more"
+        readButton.innerHTML = "Read more review"
       } else {
-        readButton.innerHTML = "Close"
+        readButton.innerHTML = "Close review"
       }  
     }
 
