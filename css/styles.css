@@ -111,17 +111,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #f3f3f3;
 }
 
-#footer {
-  background-color: #444;
-  color: #aaa;
-  font-size: 0.8em;
-  letter-spacing: 0.1em;
-  padding: 1.2em;
-  text-align: center;
-  text-transform: uppercase;
-  align-items: center;
-  justify-content: center;
-}
 
 /* ====================== Navigation ====================== */
 nav {
@@ -251,7 +240,7 @@ select:focus {
   border-radius: 2em 0 0 0;
 }
 
-#restaurants-list li h1 {
+.restaurant-names {
   color: #f18200;
   font-family: Arial,sans-serif;
   font-size: 1.1em;
@@ -263,7 +252,7 @@ select:focus {
   width: 100%;
 }
 
-#restaurants-list p {
+.restaurant-address {
   margin: 0 1em 0 1em;
   font-size: 1em;
 }
@@ -476,6 +465,18 @@ ul#reviews-list {
 
 #reviews-list li p.read-more {
   display: none;
+}
+
+#footer {
+  background-color: #444;
+  color: #aaa;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  padding: 1.2em;
+  text-align: center;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
 }
 
 @media all and (min-width: 550px) and (max-width: 899px){
