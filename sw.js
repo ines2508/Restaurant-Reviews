@@ -28,7 +28,6 @@ let filesToCache = [
 
 self.addEventListener('install', function(e){
 
-   self.skipWaiting();
 
     e.waitUntil(
        caches.open(cacheName).then(function(cache){
@@ -40,6 +39,8 @@ self.addEventListener('install', function(e){
 })
 
 self.addEventListener('activate', function(e){
+
+    self.skipWaiting();
 
     e.waitUntil(
         // remove old caches

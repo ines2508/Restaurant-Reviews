@@ -139,7 +139,6 @@ nav h1 a {
     background-color: #eee;
     font-size: 1em;
     margin: 0;
-    width: 100%;
     display: inline;
 }
 
@@ -281,10 +280,6 @@ select:focus {
 #restaurants-list li a:hover {
   background-color: #3397DB;
   padding: 0.8em 2.1em 0.4em 2.3em;
-  -webkit-transition: ease-in-out, padding .35s ease-in-out;
-  -moz-transition: ease-in-out, padding .35s ease-in-out;
-  -o-transition: ease-in-out, padding .35s ease-in-out;
-  transition: ease-in-out, padding .35s ease-in-out;
 }
 
 /* ====================== Restaurant Details ====================== */
@@ -704,7 +699,7 @@ ul#reviews-list {
 
 
 @media all and (min-width: 1024px) {
-  .container {
+  #maincontent {
     width: 1035px;
     margin-left: auto;
     margin-right: auto;
