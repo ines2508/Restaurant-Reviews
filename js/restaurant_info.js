@@ -84,7 +84,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   name.innerHTML = restaurant.name;
 
   const address = document.getElementById('restaurant-address');
-  address.innerHTML = restaurant.address;
+  address.innerHTML = `${restaurant.neighborhood} <br/> ${restaurant.address}`;
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
@@ -156,6 +156,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   createReviewHTML = (review) => {
     const li = document.createElement('li');
     li.className = 'short-description';
+    li.setAttribute("id", `longer-review-${reviews.indexOf(review)}`);
     const reviewContainer = document.createElement('div');
     reviewContainer.className = 'review-data-container';
     const name = document.createElement('p');
@@ -186,6 +187,8 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     readMore.setAttribute('data-toggle', 'short-description');
     readMore.className = 'read-more';
     readMore.setAttribute("tabindex","0");
+    readMore.setAttribute("aria-controls",`longer-review-${reviews.indexOf(review)}`);
+    readMore.setAttribute("aria-expanded", "false");
     li.appendChild(readMore);
 
     return li;
@@ -206,9 +209,11 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
       readButton.parentElement.classList.toggle('short-description');        
          
       if (readButton.parentElement.classList.contains('short-description')) {
-        readButton.innerHTML = "Read more review"
+        readButton.innerHTML = "Read more review";
+        readButton.setAttribute("aria-expanded", "false");
       } else {
-        readButton.innerHTML = "Close review"
+        readButton.innerHTML = "Close review";
+        readButton.setAttribute("aria-expanded", "true");
       }  
     }
 

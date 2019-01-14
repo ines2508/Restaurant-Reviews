@@ -61,6 +61,7 @@ option,
 .review-data-container,
 #restaurant-container,
 .restaurant-name-img-container,
+#restaurant-address-constainer,
 ul#reviews-list,
 .container {
     display: flex;
@@ -345,10 +346,11 @@ select:focus {
   border-radius: 0 0 2em 0
 }
 
+
 #restaurant-address {
   font-size: 1.2em;
   padding: 0.3em 0 0.8em 0;
-  width: 90%;
+  width: 100%;
   text-align: center;
   color: #0275d8;
 }
@@ -551,10 +553,17 @@ ul#reviews-list {
     order: 20;
   } 
 
+  #restaurant-address-constainer {
+    order: 25;
+    justify-content: flex-end;
+    margin: 0 0 0 4vw;
+  }
+
   #restaurant-address {
     order: 30;
-    width: 100%;
-    padding: 1.6em 0 1em 0
+    width: 48vw;
+    padding: 0.2em 0 1em 0;
+    text-align: left;
   }
 
   #reviews-container {
@@ -722,6 +731,10 @@ ul#reviews-list {
 
   #restaurant-hours {
     width: 40%;
+  }
+
+  #restaurant-address {
+    width: 46%;
   }
 
   .short-description {
