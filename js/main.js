@@ -128,6 +128,7 @@ updateRestaurants = () => {
  * Clear current restaurants, their HTML and remove their map markers.
  */
 resetRestaurants = (restaurants) => {
+  
   // Remove all restaurants
   self.restaurants = [];
   const ul = document.getElementById('restaurants-list');
@@ -195,6 +196,7 @@ createRestaurantHTML = (restaurant) => {
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
+    
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.newMap);
     
@@ -226,7 +228,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 
     self.markers.push(marker);
   });
-// addTabToMarker()
 } 
 /* addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
