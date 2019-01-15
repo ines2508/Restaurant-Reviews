@@ -336,7 +336,7 @@ select:focus {
 
 #restaurant-img {
   width: 90%;
-  max-height: 55vh;
+  max-height: 50vw;
   object-fit: cover;
   border-radius: 0 0 2em 0
 }
@@ -486,8 +486,9 @@ ul#reviews-list {
     width: 42%;
   }
 
+  /* img on main */
   #restaurants-list .restaurant-img {
-    max-height: 42vw;
+    max-height: 30vw;
   }
 
   #restaurants-list li {
@@ -501,8 +502,9 @@ ul#reviews-list {
 
 @media all and (min-width: 650px) and (orientation: portrait) {
   
+  /* img of one restaurant */
   #restaurant-img {
-    max-height: 55vh;
+      max-height: 40vw;
   }
 
   .short-description {
@@ -511,7 +513,7 @@ ul#reviews-list {
   }
 }
 
-@media all and (min-width: 650px) and (orientation: landscape) {
+@media all and (min-width: 550px) and (orientation: landscape) {
   
   #restaurant-img {
     max-height: 40vw;
@@ -642,7 +644,7 @@ ul#reviews-list {
 @media all and (min-width: 850px) and (max-width: 1023px) and (orientation: landscape) {
 
   #restaurant-img {
-    max-height: 35vw;
+    max-height: 30vw;
   }
 
   .short-description {
