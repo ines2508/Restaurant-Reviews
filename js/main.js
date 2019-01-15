@@ -197,13 +197,36 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.newMap);
+    
     marker.on("click", onClick);
+
     function onClick() {
       window.location.href = marker.options.url;
     }
+
+    const icons = document.querySelectorAll(".leaflet-marker-icon");
+    icons.forEach((icon) => {
+
+      icon.setAttribute("tabindex", "0");
+      icon.setAttribute("role", "link");
+      icon.setAttribute("title", `${icon.getAttribute("alt")}`);
+      
+
+      icon.addEventListener("keypress", function(e){
+     
+        let button = e.keyCode;
+        let character = e.which;
+  
+        if (button === 13 || character === 13) {
+          window.location.href = marker.options.url;
+        }
+      }) 
+
+    })
+
     self.markers.push(marker);
   });
-
+// addTabToMarker()
 } 
 /* addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
